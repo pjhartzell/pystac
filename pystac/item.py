@@ -9,6 +9,7 @@ from pystac import STACError, STACObjectType
 from pystac.asset import Asset
 from pystac.catalog import Catalog
 from pystac.collection import Collection
+from pystac.extensions.version import ItemVersionExtension
 from pystac.html.jinja_env import get_jinja_env
 from pystac.link import Link
 from pystac.serialization import (
@@ -482,6 +483,8 @@ class Item(STACObject):
 
         if root:
             item.set_root(root)
+
+        deprecated_bool = ItemVersionExtension(item).deprecated
 
         return item
 
